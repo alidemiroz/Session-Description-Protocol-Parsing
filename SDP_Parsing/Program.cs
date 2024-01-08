@@ -9,7 +9,7 @@ class Program
 
             var lines = File.ReadAllLines("//Users//mehmetalingu//Desktop//sdp_input.txt");
 
-            List<List<string>> sdpAll = new List<List<string>>();
+            List<SDP> sdpAll = new List<SDP>();
 
             foreach (var line in lines)
             {
@@ -64,9 +64,15 @@ class Program
                             sdp.Bandwidth.Modifier = bandDatas[0];
                             sdp.Bandwidth.Value = bandDatas[1];
                             break;
-                        case 'z':
+                        case 't':
+                            string timedescp = line.Substring(2);
 
+                            string[] timeDatas = timedescp.Split(' ');
+                            sdp.TimeZone.StartTime = timeDatas[0];
+                            sdp.TimeZone.EndTime = timeDatas[1];
                             break;
+
+                            
                         case 'k':
 
                             break;
@@ -80,7 +86,7 @@ class Program
                 }
                 else
                 {
-                    sdpAll.Add(sdp.sdpLines);
+                    sdpAll.Add(sdp);
                     sdp = new SDP();
                 }
             }
@@ -107,7 +113,7 @@ class SDP
     public string Phone { get; set; }
     public Connection Connection { get; set; } = new Connection();
     public Bandwith Bandwidth { get; set; } = new Bandwith();
-    public string TimeZoneAdjustments { get; set; }
+    public TimeZone TimeZone { get; set; } = new TimeZone();
     public string EncryptiontyKey { get; set; }
     public string SessionAttribute { get; set; }
     public string MyProperty { get; set; }
@@ -133,4 +139,10 @@ class Bandwith
 {
     public string Modifier { get; set; }
     public string Value { get; set; }
+}
+
+class TimeZone
+{
+    public string StartTime { get; set; }
+    public string EndTime { get; set; }
 }

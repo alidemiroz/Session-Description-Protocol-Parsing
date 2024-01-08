@@ -57,6 +57,22 @@ class Program
                             sdp.Connection.AdressType = connectDatas[1];
                             sdp.Connection.ConnectionAdress = connectDatas[2];
                             break;
+                        case 'b':
+                            string banddescp = line.Substring(2);
+
+                            string[] bandDatas = banddescp.Split(':');
+                            sdp.Bandwidth.Modifier = bandDatas[0];
+                            sdp.Bandwidth.Value = bandDatas[1];
+                            break;
+                        case 'z':
+
+                            break;
+                        case 'k':
+
+                            break;
+                        case 'a':
+
+                            break;
 
                         default:
                             break;
@@ -90,7 +106,7 @@ class SDP
     public string Email { get; set; }
     public string Phone { get; set; }
     public Connection Connection { get; set; } = new Connection();
-    public string BandwidthInfo { get; set; }
+    public Bandwith Bandwidth { get; set; } = new Bandwith();
     public string TimeZoneAdjustments { get; set; }
     public string EncryptiontyKey { get; set; }
     public string SessionAttribute { get; set; }
@@ -111,4 +127,10 @@ class Connection
     public string NetworkType { get; set; }
     public string AdressType { get; set; }
     public string ConnectionAdress { get; set; }
+}
+
+class Bandwith
+{
+    public string Modifier { get; set; }
+    public string Value { get; set; }
 }

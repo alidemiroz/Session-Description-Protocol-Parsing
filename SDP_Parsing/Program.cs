@@ -71,10 +71,14 @@ class Program
                             sdp.TimeZone.StartTime = timeDatas[0];
                             sdp.TimeZone.EndTime = timeDatas[1];
                             break;
+                        case 'm':
+                            string mediadescp = line.Substring(2);
 
-                            
-                        case 'k':
-
+                            string[] mediaDatas = mediadescp.Split(' ');
+                            sdp.Media.Type = mediaDatas[0];
+                            sdp.Media.PortNumber = mediaDatas[1];
+                            sdp.Media.Transport = mediaDatas[2];
+                            sdp.Media.Format.AddRange(mediaDatas.Skip(3));
                             break;
                         case 'a':
 
@@ -114,9 +118,8 @@ class SDP
     public Connection Connection { get; set; } = new Connection();
     public Bandwith Bandwidth { get; set; } = new Bandwith();
     public TimeZone TimeZone { get; set; } = new TimeZone();
-    public string EncryptiontyKey { get; set; }
-    public string SessionAttribute { get; set; }
-    public string MyProperty { get; set; }
+    public Media Media { get; set; } = new Media();
+    public string Attribute { get; set; }
 }
 
 class Owner
@@ -145,4 +148,12 @@ class TimeZone
 {
     public string StartTime { get; set; }
     public string EndTime { get; set; }
+}
+
+class Media
+{
+    public string Type { get; set; }
+    public string PortNumber { get; set; }
+    public string Transport { get; set; }
+    public List<string> Format { get; set; } = new List<string>();
 }

@@ -81,7 +81,10 @@ class Program
                             sdp.Media.Format.AddRange(mediaDatas.Skip(3));
                             break;
                         case 'a':
+                            string attribute = line.Substring(2);
 
+                            string[] attributeDatas = attribute.Split(' ');
+                            sdp.Attribute.AddRange(attributeDatas);
                             break;
 
                         default:
@@ -94,9 +97,6 @@ class Program
                     sdp = new SDP();
                 }
             }
-
-            
-
         }
         catch (Exception e)
         {
@@ -119,7 +119,7 @@ class SDP
     public Bandwith Bandwidth { get; set; } = new Bandwith();
     public TimeZone TimeZone { get; set; } = new TimeZone();
     public Media Media { get; set; } = new Media();
-    public string Attribute { get; set; }
+    public List<string> Attribute { get; set; } = new List<string>();
 }
 
 class Owner

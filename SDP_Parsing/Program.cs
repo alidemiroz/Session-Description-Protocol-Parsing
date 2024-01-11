@@ -1,4 +1,5 @@
-﻿
+﻿using SDP_Parsing;
+
 class Program
 {
     static void Main()
@@ -103,57 +104,4 @@ class Program
             Console.WriteLine(e.Message);
         }
     }
-}
-
-class SDP
-{
-    public List<string> sdpLines = new List<string>();
-    public string ProtocolVersion { get; set; }
-    public Owner Owner { get; set; } = new Owner();
-    public string SessionName { get; set; }
-    public string SessionInfo { get; set; }
-    public string UriDescp { get; set; }
-    public string Email { get; set; }
-    public string Phone { get; set; }
-    public Connection Connection { get; set; } = new Connection();
-    public Bandwith Bandwidth { get; set; } = new Bandwith();
-    public TimeZone TimeZone { get; set; } = new TimeZone();
-    public Media Media { get; set; } = new Media();
-    public List<string> Attribute { get; set; } = new List<string>();
-}
-
-class Owner
-{
-    public string Username { get; set; }
-    public string SessionID { get; set; }
-    public string Version { get; set; }
-    public string NetworkType { get; set; }
-    public string AdressType { get; set; }
-}
-
-class Connection
-{
-    public string NetworkType { get; set; }
-    public string AdressType { get; set; }
-    public string ConnectionAdress { get; set; }
-}
-
-class Bandwith
-{
-    public string Modifier { get; set; }
-    public string Value { get; set; }
-}
-
-class TimeZone
-{
-    public string StartTime { get; set; }
-    public string EndTime { get; set; }
-}
-
-class Media
-{
-    public string Type { get; set; }
-    public string PortNumber { get; set; }
-    public string Transport { get; set; }
-    public List<string> Format { get; set; } = new List<string>();
 }
